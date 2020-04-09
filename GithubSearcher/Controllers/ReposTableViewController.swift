@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class ReposTableViewController: UITableViewController {
+final class ReposTableViewController: UITableViewController {
 
     var repos = [Repo]()
     var filteredRepos = [Repo]()
@@ -22,10 +22,15 @@ class ReposTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableHeaderView = searchBar
+       configureSearchBar()
+        tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoTableViewCell")
+    }
+    
+    func configureSearchBar() {
         searchBar.delegate = self
         searchBar.placeholder = "Search for User's repositories"
-        searchBar.returnKeyType = .done
+        searchBar.showsCancelButton = true
+        tableView.tableHeaderView = searchBar
     }
 
     //MARK: - Navigation
@@ -47,12 +52,10 @@ extension ReposTableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if isSearchActive {
             return filteredRepos.count
         } else {
@@ -61,22 +64,24 @@ extension ReposTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let repo: Repo?
-        if isSearchActive {
-            repo = filteredRepos[indexPath.row]
-        } else {
-            repo = repos[indexPath.row]
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RepoTableViewCell", for: indexPath) as? RepoTableViewCell else {
+            fatalError("Unable to find cell")
         }
-        cell.textLabel?.text = repo?.name
-        cell.detailTextLabel?.numberOfLines = 2
-        cell.detailTextLabel?.text = "\(repo?.forks ?? 0) Forks" + "\n" + "\(repo?.stargazersCount ?? 0) Stars"
+        if isSearchActive {
+            cell.configureCell(with: filteredRepos[indexPath.row])
+        } else {
+            cell.configureCell(with: repos[indexPath.row])
+        }
         return cell
     }
+    
 }
 
 
 extension ReposTableViewController {
+    
+    // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repo: Repo?
@@ -89,15 +94,27 @@ extension ReposTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 70
     }
 }
 
 
 extension ReposTableViewController: UISearchBarDelegate {
     
+    // MARK: - Search Bar Delegate Methods
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredRepos = repos.filter{ ($0.name?.contains(searchText) ?? false)}
+        filteredRepos = repos.filter{ ($0.name?.lowercased().contains(searchText.lowercased()) ?? false)}
         self.tableView.reloadData()
     }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+    }
+
 }

@@ -16,6 +16,8 @@ class UserSearchViewModel {
     
     var updateUserList: (([GithubUser]) -> Void)?
     
+    var errorCallback: ((String) -> Void)?
+    
     func searchForUsers(with username: String) {
         guard username.count > 0 else {
             return
@@ -27,7 +29,9 @@ class UserSearchViewModel {
                 self?.userSearchResults = results
                 self?.updateUserList?(results.items)
             case .failure(let error):
-                print(error.localizedDescription)
+                if let apiError = error as? ApiError {
+                    self?.errorCallback?(apiError.message)
+                }
             }
         }
     }

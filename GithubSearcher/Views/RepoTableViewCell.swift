@@ -10,15 +10,22 @@ import UIKit
 
 class RepoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var repoNameLabel: UILabel!
+    @IBOutlet weak var labelForkCount: UILabel!
+    @IBOutlet weak var labelStarCount: UILabel!
+    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configureCell(with repo: Repo) {
+        repoNameLabel.text = repo.name
+        labelForkCount.text = "\(repo.forks ?? 0) Forks"
+        labelStarCount.text = "\(repo.stargazersCount ?? 0) Stars"
     }
-
+    
 }
+
+
+

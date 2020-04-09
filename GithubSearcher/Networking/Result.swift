@@ -21,7 +21,7 @@ enum ApiError: Error {
     case RequestLimitExceeded
     case unknownError
     
-    var localizedDescription: String {
+    var message: String {
         switch self {
         case .BadRequest:
             return "The request url is invalid"

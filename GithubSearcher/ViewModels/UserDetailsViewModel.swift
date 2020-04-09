@@ -14,6 +14,8 @@ class UserDetailsViewModel {
     var username: String = ""
     var userInfoCallback: ((GithubUser) -> Void)?
     var reposCallback: (([Repo]) -> Void)?
+    var errorCallback: ((String) -> Void)?
+    var reposErrorCallback: ((String) -> Void)?
     
     init() {}
     
@@ -27,7 +29,9 @@ class UserDetailsViewModel {
             case.success(let user):
                 self?.userInfoCallback?(user)
             case .failure(let error):
-                print(error.localizedDescription)
+                if let apiError = error as? ApiError {
+                    self?.errorCallback?(apiError.message)
+                }
             }
         }
     }

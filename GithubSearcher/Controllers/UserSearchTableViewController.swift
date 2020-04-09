@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class UserSearchTableViewController: UITableViewController {
+final class UserSearchTableViewController: UITableViewController {
     
     // Search Results will be displayed in the same view.
     var searchController = UISearchController(searchResultsController: nil)
@@ -28,8 +28,15 @@ class UserSearchTableViewController: UITableViewController {
         self.title = "GitHub Searcher"
         self.navigationController?.navigationBar.isTranslucent = false
         configureSearchBar()
+        registerCallbacks()
+    }
+    
+    func registerCallbacks() {
         viewmodel.updateUserList = { [weak self] (matchedUsers) in
             self?.users = matchedUsers
+        }
+        viewmodel.errorCallback = { (errorMessage) in
+            print(errorMessage)
         }
     }
     

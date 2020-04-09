@@ -9,7 +9,7 @@
 import UIKit
 import AuthenticationServices
 
-class SigninViewController: UIViewController {
+final class SigninViewController: UIViewController {
 
     @IBOutlet weak var stackView: UIStackView!
     

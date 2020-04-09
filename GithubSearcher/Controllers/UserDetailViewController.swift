@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserDetailViewController: UIViewController {
+final class UserDetailViewController: UIViewController {
     
     @IBOutlet weak var userInfoContainer: UserInfoView!
     @IBOutlet weak var labelBio: UILabel!
@@ -22,6 +22,11 @@ class UserDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.fetchUserDetails()
+        viewModel.userRepos()
+        registerCallbacks()
+    }
+    
+    func registerCallbacks() {
         viewModel.userInfoCallback = { [weak self] (user) in
             DispatchQueue.main.async {
                 self?.configureUserInfo(with: user)
@@ -29,13 +34,17 @@ class UserDetailViewController: UIViewController {
             }
         }
         
-        viewModel.userRepos()
+        viewModel.errorCallback = { (message) in
+            DispatchQueue.main.async { [weak self] in
+                self?.presentAlert(title: "Error", message: message)
+            }
+        }
+        
         viewModel.reposCallback = { [weak self] (repos) in
             DispatchQueue.main.async {
                 self?.configureTable(with: repos)
             }
         }
-        
     }
     
     func configureTable(with repos: [Repo]) {
