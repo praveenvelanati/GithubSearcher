@@ -16,8 +16,23 @@ enum Result<T, E:Error> {
 
 enum ApiError: Error {
     
-    case BadUrl
+    case BadRequest
     case NetworkUnavailable
+    case RequestLimitExceeded
+    case unknownError
     
+    var localizedDescription: String {
+        switch self {
+        case .BadRequest:
+            return "The request url is invalid"
+        case .NetworkUnavailable:
+            return "The network is unreachable, please check your connection"
+        case .RequestLimitExceeded:
+            // Not ideal message for production
+            return "The request limit exceeded. Please try again in a bit"
+        default:
+            return "An unknown occured."
+        }
+    }
     
 }

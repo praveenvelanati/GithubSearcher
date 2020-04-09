@@ -9,11 +9,12 @@
 import Foundation
 
 protocol GitHubServiceType {
-    
+    func fetchSearchResults(with request: UserSearchRequest, completion: @escaping (Result<UserSearchResults, Error>) -> Void)
 }
 
 
 class GitHubService: GitHubServiceType {
+   
     
     var baseURL: URL? = {
         URL(string: "https://api.github.com/")
@@ -23,7 +24,7 @@ class GitHubService: GitHubServiceType {
     
     func fetchSearchResults(with request: UserSearchRequest, completion: @escaping (Result<UserSearchResults, Error>) -> Void) {
         guard let url = baseURL?.appendingPathComponent(request.path) else {
-            completion(.failure(ApiError.BadUrl))
+            completion(.failure(ApiError.BadRequest))
             return
         }
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
