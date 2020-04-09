@@ -22,7 +22,7 @@ final class ReposTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       configureSearchBar()
+        configureSearchBar()
         tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoTableViewCell")
     }
     
