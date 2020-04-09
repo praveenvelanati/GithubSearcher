@@ -30,6 +30,8 @@
 		C3ECF3C3243F694800246449 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3C2243F694800246449 /* GithubRequest.swift */; };
 		C3ECF3C6243F6DFF00246449 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C3ECF3C5243F6DFF00246449 /* Kingfisher */; };
 		C3ECF3C7243F6DFF00246449 /* Kingfisher in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C3ECF3C5243F6DFF00246449 /* Kingfisher */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C3ECF3CA243F87AF00246449 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3C9243F87AF00246449 /* SigninViewController.swift */; };
+		C3ECF3CD243F932700246449 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3CC243F932700246449 /* RepoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,9 @@
 		C3ECF3BE243EEF7A00246449 /* ReposTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposTableViewController.swift; sourceTree = "<group>"; };
 		C3ECF3C0243F550800246449 /* JsonDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecodingStrategy.swift; sourceTree = "<group>"; };
 		C3ECF3C2243F694800246449 /* GithubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
+		C3ECF3C9243F87AF00246449 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		C3ECF3CB243F8EA700246449 /* GithubSearcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GithubSearcher.entitlements; sourceTree = "<group>"; };
+		C3ECF3CC243F932700246449 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +129,7 @@
 		C3ECF376243E8F5F00246449 /* GithubSearcher */ = {
 			isa = PBXGroup;
 			children = (
+				C3ECF3CB243F8EA700246449 /* GithubSearcher.entitlements */,
 				C3ECF3B9243EDDF100246449 /* Views */,
 				C3ECF3AE243EA5F400246449 /* Networking */,
 				C3ECF3AB243EA49200246449 /* Services */,
@@ -165,6 +171,7 @@
 				C3ECF3A6243E99EB00246449 /* UserSearchTableViewController.swift */,
 				C3ECF3B3243ED24500246449 /* UserDetailViewController.swift */,
 				C3ECF3BE243EEF7A00246449 /* ReposTableViewController.swift */,
+				C3ECF3C9243F87AF00246449 /* SigninViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 			children = (
 				C3ECF3BA243EDE6000246449 /* UserInfoView.swift */,
 				C3ECF3BC243EDE7600246449 /* UserInfoView.xib */,
+				C3ECF3CC243F932700246449 /* RepoTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +328,7 @@
 				C3ECF3B8243EDC8900246449 /* UserDetailsViewModel.swift in Sources */,
 				C3ECF3BF243EEF7A00246449 /* ReposTableViewController.swift in Sources */,
 				C3ECF39B243E93DC00246449 /* GithubUser.swift in Sources */,
+				C3ECF3CD243F932700246449 /* RepoTableViewCell.swift in Sources */,
 				C3ECF3B2243EC98500246449 /* GitHubUserService.swift in Sources */,
 				C3ECF378243E8F5F00246449 /* AppDelegate.swift in Sources */,
 				C3ECF37A243E8F5F00246449 /* SceneDelegate.swift in Sources */,
@@ -328,6 +337,7 @@
 				C3ECF3C3243F694800246449 /* GithubRequest.swift in Sources */,
 				C3ECF3AA243EA45B00246449 /* UserSearchViewModel.swift in Sources */,
 				C3ECF3C1243F550800246449 /* JsonDecodingStrategy.swift in Sources */,
+				C3ECF3CA243F87AF00246449 /* SigninViewController.swift in Sources */,
 				C3ECF3BB243EDE6000246449 /* UserInfoView.swift in Sources */,
 				C3ECF3B0243EA61A00246449 /* Result.swift in Sources */,
 				C3ECF3AD243EA4AE00246449 /* GitHubService.swift in Sources */,
@@ -490,9 +500,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GithubSearcher/GithubSearcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6KBX2U5F58;
 				INFOPLIST_FILE = GithubSearcher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -508,9 +520,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GithubSearcher/GithubSearcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6KBX2U5F58;
 				INFOPLIST_FILE = GithubSearcher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

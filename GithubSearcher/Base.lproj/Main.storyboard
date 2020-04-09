@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GwV-BW-9wT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b2Q-0E-gfx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -7,6 +7,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Signin View Controller-->
+        <scene sceneID="zkT-Jy-ZYg">
+            <objects>
+                <viewController id="Apg-N7-4G0" customClass="SigninViewController" customModule="GithubSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vLc-IP-zK3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lgq-kV-cH3">
+                                <rect key="frame" x="32" y="298" width="350" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="300" id="Gla-eh-vD6"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lgq-kV-cH3" firstAttribute="centerY" secondItem="vLc-IP-zK3" secondAttribute="centerY" id="0x1-ve-DtZ"/>
+                            <constraint firstItem="cYM-na-b3d" firstAttribute="trailing" secondItem="lgq-kV-cH3" secondAttribute="trailing" constant="32" id="8YG-z0-K1L"/>
+                            <constraint firstItem="lgq-kV-cH3" firstAttribute="leading" secondItem="cYM-na-b3d" secondAttribute="leading" constant="32" id="R16-nW-KkZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cYM-na-b3d"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lGH-2I-2K3"/>
+                    <connections>
+                        <outlet property="stackView" destination="lgq-kV-cH3" id="bjV-ld-d6R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tgZ-bc-I4q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="792.75362318840587" y="101.78571428571428"/>
+        </scene>
         <!--User Search Table View Controller-->
         <scene sceneID="6Ur-d0-ABR">
             <objects>
@@ -51,7 +83,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5S8-Jk-xzU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1031.8840579710145" y="112.5"/>
+            <point key="canvasLocation" x="1942.0289855072465" y="112.5"/>
         </scene>
         <!--User Detail View Controller-->
         <scene sceneID="8s8-WX-klP">
@@ -128,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omQ-Ka-fQC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810.144927536232" y="45.535714285714285"/>
+            <point key="canvasLocation" x="2720.289855072464" y="45.535714285714285"/>
         </scene>
         <!--Repos Table View Controller-->
         <scene sceneID="WZV-da-Kwd">
@@ -139,7 +171,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="zUG-oZ-LnI" detailTextLabel="YdF-rG-1XR" style="IBUITableViewCellStyleValue1" id="01t-Fd-sdH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="zUG-oZ-LnI" detailTextLabel="YdF-rG-1XR" style="IBUITableViewCellStyleValue1" id="01t-Fd-sdH" customClass="RepoTableViewCell" customModule="GithubSearcher" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="01t-Fd-sdH" id="ZBJ-tJ-e3q">
@@ -172,25 +204,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tua-2S-pOw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2576" y="80"/>
+            <point key="canvasLocation" x="3485.507246376812" y="79.6875"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="4t6-je-fTP">
+        <scene sceneID="mKz-3Y-JwO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GwV-BW-9wT" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b2Q-0E-gfx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="59E-tI-uSF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hPt-pI-QYU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6yj-Ez-oCr" kind="relationship" relationship="rootViewController" id="Gdc-HK-43N"/>
+                        <segue destination="Apg-N7-4G0" kind="relationship" relationship="rootViewController" id="LWQ-We-iYv"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aFv-t3-aWQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5fL-Ve-uPB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121.73913043478262" y="112.5"/>
+            <point key="canvasLocation" x="-117.39130434782609" y="101.78571428571428"/>
         </scene>
     </scenes>
 </document>
