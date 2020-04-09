@@ -20,17 +20,25 @@ class UserInfoView: UIView {
     @IBOutlet weak var labelFollowing: UILabel!
     
     func configure(with viewModel: UserInfoViewModel) {
-        labelUsername.text = viewModel.username
-        labelEmail.text = viewModel.email
-        labelLocation.text = viewModel.location
-        labelJoinedDate.text = viewModel.joinedDate
-        labelFollowers.text = viewModel.followers
-        labelFollowing.text = viewModel.following
+        labelUsername.setTextorHideWrapper(text: viewModel.username ?? "")
+        labelEmail.setTextorHideWrapper(text: viewModel.email ?? "")
+        labelLocation.setTextorHideWrapper(text: viewModel.location ?? "")
+        labelJoinedDate.setTextorHideWrapper(text: viewModel.joinedDate ?? "")
+        labelFollowers.setTextorHideWrapper(text: viewModel.followers ?? "")
+        labelFollowing.setTextorHideWrapper(text: viewModel.following ?? "")
         if let imageUrl = viewModel.imageUrl {
             imageViewUser.kf.setImage(with: imageUrl, placeholder: UIImage(named: "user"), options: [.cacheMemoryOnly])
         }
     }
 
+}
+
+extension UILabel {
+     
+    func setTextorHideWrapper(text: String) {
+        self.isHidden = text.count > 0 ? false : true
+        self.text = text
+    }
 }
 
 struct UserInfoViewModel {
