@@ -10,19 +10,29 @@ import Foundation
 
 struct GithubUser: Codable {
     
-    var login: String
-    var id: Int
-    var nodeId: String
+    var login: String?
+    var id: Int?
     var avatarUrl: URL?
-    var gravatarId: String
     var url: URL?
-    var htmlUrl: URL?
-    var followersUrl: URL?
-    var subscriptionsUrl: URL?
-    var organizationsUrl: URL?
     var reposUrl: URL?
-    var receivedEventsUrl: URL?
-    var type: String
-    var score: Double
+    var type: String?
+    var score: Double?
+    var name: String?
+    var location: String?
+    var email: String?
+    var bio: String?
+    var publicRepos: Int?
+    var followers: Int?
+    var following: Int?
+    var createdAt: Date?
+    var updatedAt: Date?
     
+}
+
+extension DateFormatter {
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter
+    }()
 }

@@ -58,8 +58,17 @@ class UserSearchTableViewController: UITableViewController {
         let user = users[indexPath.row]
         cell.imageView?.image = UIImage(systemName: "phone")
         cell.textLabel?.text = user.login
-        cell.detailTextLabel?.text = "Repo: \(user.score)"
+        cell.detailTextLabel?.text = "Repo: \(user.score ?? 0)"
         return cell
+    }
+    
+    // MARK: -Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "UserDetailViewController") as? UserDetailViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 

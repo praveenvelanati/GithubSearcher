@@ -17,6 +17,9 @@ class UserSearchViewModel {
     var updateUserList: (([GithubUser]) -> Void)?
     
     func searchForUsers(with username: String) {
+        guard username.count > 0 else {
+            return
+        }
         githubService.fetchSearchResults(with: UserSearchRequest(queryValue: username)) { [weak self] (result) in
             switch result {
             case .success(let results):
