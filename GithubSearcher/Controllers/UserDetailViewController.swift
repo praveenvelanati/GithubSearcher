@@ -51,7 +51,8 @@ final class UserDetailViewController: UIViewController {
         guard let repoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ReposTableViewController") as? ReposTableViewController else {
             return
         }
-        repoVC.repos = repos
+        let repoViewModel = ReposViewModel(repos: repos)
+        repoVC.repoViewModel = repoViewModel
         addChild(repoVC)
         repoVC.view.frame = repoContainer.bounds
         repoContainer.addSubview(repoVC.view)

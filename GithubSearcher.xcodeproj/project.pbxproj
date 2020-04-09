@@ -35,6 +35,7 @@
 		C3ECF3D3243FAB2100246449 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3ECF3D1243FAB2100246449 /* RepoTableViewCell.xib */; };
 		C3ECF3D6243FB0FC00246449 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3D5243FB0FC00246449 /* UIViewControllerExtensions.swift */; };
 		C3ECF3D8243FB8C200246449 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3D7243FB8C200246449 /* UITableViewExtensions.swift */; };
+		C3ECF3DA243FC4D500246449 /* ReposViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3D9243FC4D500246449 /* ReposViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		C3ECF3D1243FAB2100246449 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
 		C3ECF3D5243FB0FC00246449 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		C3ECF3D7243FB8C200246449 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
+		C3ECF3D9243FC4D500246449 /* ReposViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			children = (
 				C3ECF3A9243EA45B00246449 /* UserSearchViewModel.swift */,
 				C3ECF3B7243EDC8900246449 /* UserDetailsViewModel.swift */,
+				C3ECF3D9243FC4D500246449 /* ReposViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				C3ECF3B4243ED24500246449 /* UserDetailViewController.swift in Sources */,
 				C3ECF3C3243F694800246449 /* GithubRequest.swift in Sources */,
 				C3ECF3AA243EA45B00246449 /* UserSearchViewModel.swift in Sources */,
+				C3ECF3DA243FC4D500246449 /* ReposViewModel.swift in Sources */,
 				C3ECF3C1243F550800246449 /* JsonDecodingStrategy.swift in Sources */,
 				C3ECF3D8243FB8C200246449 /* UITableViewExtensions.swift in Sources */,
 				C3ECF3CA243F87AF00246449 /* SigninViewController.swift in Sources */,

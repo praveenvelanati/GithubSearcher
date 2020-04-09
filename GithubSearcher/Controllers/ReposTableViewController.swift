@@ -11,19 +11,21 @@ import SafariServices
 
 final class ReposTableViewController: UITableViewController {
 
-    var repos = [Repo]()
-    var filteredRepos = [Repo]()
-    var searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 40))
     
-    var isSearchActive: Bool {
-        let text = searchBar.text ?? ""
-        return text.count > 0
+    var searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 40))
+    var repoViewModel = ReposViewModel()
+    var repos = [Repo]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSearchBar()
-        tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoTableViewCell")
+        repos = repoViewModel.totalRepos
+        configureTable()
     }
     
     func configureSearchBar() {
@@ -31,6 +33,15 @@ final class ReposTableViewController: UITableViewController {
         searchBar.placeholder = "Search for User's repositories"
         searchBar.showsCancelButton = true
         tableView.tableHeaderView = searchBar
+    }
+    
+    func configureTable() {
+        tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoTableViewCell")
+        if repos.count == 0 {
+            self.tableView.setEmptyMessage("There are public repositories for this user")
+        } else {
+            configureSearchBar()
+        }
     }
 
     //MARK: - Navigation
@@ -56,11 +67,7 @@ extension ReposTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearchActive {
-            return filteredRepos.count
-        } else {
-            return repos.count
-        }
+        return repos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,11 +75,7 @@ extension ReposTableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RepoTableViewCell", for: indexPath) as? RepoTableViewCell else {
             fatalError("Unable to find cell")
         }
-        if isSearchActive {
-            cell.configureCell(with: filteredRepos[indexPath.row])
-        } else {
-            cell.configureCell(with: repos[indexPath.row])
-        }
+        cell.configureCell(with: repos[indexPath.row])
         return cell
     }
     
@@ -84,13 +87,7 @@ extension ReposTableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repo: Repo?
-        if isSearchActive {
-            repo = filteredRepos[indexPath.row]
-        } else {
-            repo = repos[indexPath.row]
-        }
-        navigateToSafari(url: repo?.htmlUrl)
+        navigateToSafari(url: repos[indexPath.row].htmlUrl)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,8 +101,7 @@ extension ReposTableViewController: UISearchBarDelegate {
     // MARK: - Search Bar Delegate Methods
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredRepos = repos.filter{ ($0.name?.lowercased().contains(searchText.lowercased()) ?? false)}
-        self.tableView.reloadData()
+        repos = repoViewModel.filterRepos(with: searchText)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -116,5 +112,5 @@ extension ReposTableViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
-
+    
 }
