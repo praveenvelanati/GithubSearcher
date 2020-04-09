@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ReposTableViewController: UITableViewController {
 
@@ -23,10 +24,28 @@ class ReposTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableHeaderView = searchBar
         searchBar.delegate = self
+        searchBar.placeholder = "Search for User's repositories"
+        searchBar.returnKeyType = .done
     }
 
-    // MARK: - Table view data source
+    //MARK: - Navigation
+    
+    func navigateToSafari(url: URL?) {
+        if let url = url {
+            let safariVC = SFSafariViewController(url: url)
+            safariVC.preferredBarTintColor = .black
+            safariVC.preferredControlTintColor = .white
+            present(safariVC, animated: true, completion: nil)
+        }
+    }
 
+}
+
+
+extension ReposTableViewController {
+     
+    // MARK: - Table view data source
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -41,8 +60,6 @@ class ReposTableViewController: UITableViewController {
         }
     }
     
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let repo: Repo?
@@ -54,9 +71,22 @@ class ReposTableViewController: UITableViewController {
         cell.textLabel?.text = repo?.name
         return cell
     }
-    
-
 }
+
+
+extension ReposTableViewController {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repo: Repo?
+        if isSearchActive {
+            repo = filteredRepos[indexPath.row]
+        } else {
+            repo = repos[indexPath.row]
+        }
+        navigateToSafari(url: repo?.htmlUrl)
+    }
+}
+
 
 extension ReposTableViewController: UISearchBarDelegate {
     

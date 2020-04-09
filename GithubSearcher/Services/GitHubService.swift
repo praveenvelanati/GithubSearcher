@@ -9,60 +9,24 @@
 import Foundation
 
 protocol GitHubServiceType {
-    func fetchSearchResults(with request: UserSearchRequest, completion: @escaping (Result<UserSearchResults, Error>) -> Void)
+    func fetchSearchResults(with request: GithubRequest, completion: @escaping (Result<UserSearchResults, Error>) -> Void)
 }
 
 
 class GitHubService: GitHubServiceType {
-   
-    
-    var baseURL: URL? = {
-        URL(string: "https://api.github.com/")
-    }()
     
     let session = URLSession.shared
     
-    func fetchSearchResults(with request: UserSearchRequest, completion: @escaping (Result<UserSearchResults, Error>) -> Void) {
-        guard let url = baseURL?.appendingPathComponent(request.path) else {
+    func fetchSearchResults(with request: GithubRequest, completion: @escaping (Result<UserSearchResults, Error>) -> Void) {
+        guard let url = request.buildRequestURL() else {
             completion(.failure(ApiError.BadRequest))
             return
         }
-        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
-            return
-        }
-        let queryItem = URLQueryItem(name: request.queryKey, value: request.queryValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
-        urlComponents.queryItems = [URLQueryItem]()
-        urlComponents.queryItems?.append(queryItem)
-        let urlRequest = URLRequest(url: urlComponents.url!)
+        let urlRequest = URLRequest(url: url)
         session.dataTask(with: urlRequest) { (data, response, error) in
-            guard let httpResponse = response as?HTTPURLResponse, httpResponse.statusCode == 200, let responseData = data else {
-                completion(.failure(ApiError.NetworkUnavailable))
-                return
-            }
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-                let userSearchResults = try jsonDecoder.decode(UserSearchResults.self, from: responseData)
-                completion(.success(userSearchResults))
-            } catch {
-                completion(.failure(error))
-            }
+            let result = JsonDecodingStrategy().decode(type: UserSearchResults.self, response: response, data: data, error: error)
+            completion(result)
         }.resume()
-    }
-    
-}
-
-
-struct UserSearchRequest {
-    var path = "search/users"
-    
-    var queryKey = "q"
-    
-    var queryValue: String
-    
-    init(queryValue: String) {
-        self.queryValue = queryValue
     }
     
 }

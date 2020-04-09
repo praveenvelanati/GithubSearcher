@@ -10,13 +10,19 @@ import Foundation
 
 class UserDetailsViewModel {
     
-  var userService = GitHubUserService()
-    
+    var userService = GitHubUserService()
+    var username: String = ""
     var userInfoCallback: ((GithubUser) -> Void)?
     var reposCallback: (([Repo]) -> Void)?
     
+    init() {}
+    
+    init(username: String) {
+        self.username = username
+    }
+    
     func fetchUserDetails() {
-        userService.fetchUserInfo(with: UserSearchRequest(queryValue: "praveenvelanati")) { [weak self] (result) in
+        userService.fetchUserInfo(with: GithubRequest(path: "users/\(username)")) { [weak self] (result) in
             switch result {
             case.success(let user):
                 self?.userInfoCallback?(user)
@@ -27,7 +33,7 @@ class UserDetailsViewModel {
     }
     
     func userRepos() {
-        userService.fetchUserPublicRepos(with: UserSearchRequest(queryValue: "")) { [weak self] (results) in
+        userService.fetchUserPublicRepos(with: GithubRequest(path: "users/\(username)/repos")) { [weak self] (results) in
             switch results {
             case.success(let repos):
                 self?.reposCallback?(repos)

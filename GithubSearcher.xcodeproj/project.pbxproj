@@ -26,6 +26,8 @@
 		C3ECF3BB243EDE6000246449 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3BA243EDE6000246449 /* UserInfoView.swift */; };
 		C3ECF3BD243EDE7600246449 /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3ECF3BC243EDE7600246449 /* UserInfoView.xib */; };
 		C3ECF3BF243EEF7A00246449 /* ReposTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3BE243EEF7A00246449 /* ReposTableViewController.swift */; };
+		C3ECF3C1243F550800246449 /* JsonDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3C0243F550800246449 /* JsonDecodingStrategy.swift */; };
+		C3ECF3C3243F694800246449 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3C2243F694800246449 /* GithubRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		C3ECF3BA243EDE6000246449 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		C3ECF3BC243EDE7600246449 /* UserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
 		C3ECF3BE243EEF7A00246449 /* ReposTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposTableViewController.swift; sourceTree = "<group>"; };
+		C3ECF3C0243F550800246449 /* JsonDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecodingStrategy.swift; sourceTree = "<group>"; };
+		C3ECF3C2243F694800246449 /* GithubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				C3ECF3AF243EA61A00246449 /* Result.swift */,
+				C3ECF3C0243F550800246449 /* JsonDecodingStrategy.swift */,
+				C3ECF3C2243F694800246449 /* GithubRequest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -295,7 +301,9 @@
 				C3ECF37A243E8F5F00246449 /* SceneDelegate.swift in Sources */,
 				C3ECF3A7243E99EB00246449 /* UserSearchTableViewController.swift in Sources */,
 				C3ECF3B4243ED24500246449 /* UserDetailViewController.swift in Sources */,
+				C3ECF3C3243F694800246449 /* GithubRequest.swift in Sources */,
 				C3ECF3AA243EA45B00246449 /* UserSearchViewModel.swift in Sources */,
+				C3ECF3C1243F550800246449 /* JsonDecodingStrategy.swift in Sources */,
 				C3ECF3BB243EDE6000246449 /* UserInfoView.swift in Sources */,
 				C3ECF3B0243EA61A00246449 /* Result.swift in Sources */,
 				C3ECF3AD243EA4AE00246449 /* GitHubService.swift in Sources */,
