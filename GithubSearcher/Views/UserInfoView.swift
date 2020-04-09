@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserInfoView: UIView {
 
+    @IBOutlet weak var imageViewUser: UIImageView!
     @IBOutlet weak var labelUsername: UILabel!
     @IBOutlet weak var labelEmail: UILabel!
     @IBOutlet weak var labelLocation: UILabel!
@@ -24,6 +26,9 @@ class UserInfoView: UIView {
         labelJoinedDate.text = viewModel.joinedDate
         labelFollowers.text = viewModel.followers
         labelFollowing.text = viewModel.following
+        if let imageUrl = viewModel.imageUrl {
+            imageViewUser.kf.setImage(with: imageUrl, placeholder: UIImage(named: "user"), options: [.cacheMemoryOnly])
+        }
     }
 
 }
@@ -36,14 +41,16 @@ struct UserInfoViewModel {
     let joinedDate: String?
     let followers: String?
     let following: String?
+    let imageUrl: URL?
     
     init(with user: GithubUser) {
         self.username = user.login
         self.email = user.email
         self.location = user.location
-        self.joinedDate = user.createdAt?.description
+        self.joinedDate = DateFormatter.readableDateFormat.string(from: user.createdAt ?? Date())
         self.followers = "\(user.followers ?? 0) Followers"
         self.following = "Following \(user.following ?? 0)"
+        self.imageUrl = user.avatarUrl
     }
     
 }

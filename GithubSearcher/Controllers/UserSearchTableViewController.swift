@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserSearchTableViewController: UITableViewController {
     
@@ -25,6 +26,7 @@ class UserSearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "GitHub Searcher"
+        self.navigationController?.navigationBar.isTranslucent = false
         configureSearchBar()
         viewmodel.updateUserList = { [weak self] (matchedUsers) in
             self?.users = matchedUsers
@@ -60,9 +62,14 @@ extension UserSearchTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath)
         let user = users[indexPath.row]
-        cell.imageView?.image = UIImage(systemName: "phone")
+        cell.imageView?.layer.borderWidth = 8.0
+        cell.imageView?.layer.borderColor = UIColor.white.cgColor
+        if let imageurl = user.avatarUrl {
+            cell.imageView?.kf.setImage(with: imageurl, placeholder: UIImage(named: "user"), options: [.cacheMemoryOnly])
+        }
         cell.textLabel?.text = user.login
         cell.detailTextLabel?.text = "Repo: \(user.score ?? 0)"
+        
         return cell
     }
 }
@@ -82,6 +89,10 @@ extension UserSearchTableViewController {
         }
         vc.viewModel = UserDetailsViewModel(username: username)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
 }
 

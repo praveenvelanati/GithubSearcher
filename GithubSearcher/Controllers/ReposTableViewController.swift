@@ -69,6 +69,8 @@ extension ReposTableViewController {
             repo = repos[indexPath.row]
         }
         cell.textLabel?.text = repo?.name
+        cell.detailTextLabel?.numberOfLines = 2
+        cell.detailTextLabel?.text = "\(repo?.forks ?? 0) Forks" + "\n" + "\(repo?.stargazersCount ?? 0) Stars"
         return cell
     }
 }
@@ -84,6 +86,10 @@ extension ReposTableViewController {
             repo = repos[indexPath.row]
         }
         navigateToSafari(url: repo?.htmlUrl)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 }
 

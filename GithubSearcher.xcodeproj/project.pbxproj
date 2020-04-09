@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,8 @@
 		C3ECF3BF243EEF7A00246449 /* ReposTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3BE243EEF7A00246449 /* ReposTableViewController.swift */; };
 		C3ECF3C1243F550800246449 /* JsonDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3C0243F550800246449 /* JsonDecodingStrategy.swift */; };
 		C3ECF3C3243F694800246449 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ECF3C2243F694800246449 /* GithubRequest.swift */; };
+		C3ECF3C6243F6DFF00246449 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C3ECF3C5243F6DFF00246449 /* Kingfisher */; };
+		C3ECF3C7243F6DFF00246449 /* Kingfisher in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C3ECF3C5243F6DFF00246449 /* Kingfisher */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,20 @@
 			remoteInfo = GithubSearcher;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C3ECF3C8243F6DFF00246449 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C3ECF3C7243F6DFF00246449 /* Kingfisher in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C3ECF374243E8F5F00246449 /* GithubSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3ECF3C6243F6DFF00246449 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,12 +216,16 @@
 				C3ECF370243E8F5F00246449 /* Sources */,
 				C3ECF371243E8F5F00246449 /* Frameworks */,
 				C3ECF372243E8F5F00246449 /* Resources */,
+				C3ECF3C8243F6DFF00246449 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = GithubSearcher;
+			packageProductDependencies = (
+				C3ECF3C5243F6DFF00246449 /* Kingfisher */,
+			);
 			productName = GithubSearcher;
 			productReference = C3ECF374243E8F5F00246449 /* GithubSearcher.app */;
 			productType = "com.apple.product-type.application";
@@ -255,6 +276,9 @@
 				Base,
 			);
 			mainGroup = C3ECF36B243E8F5F00246449;
+			packageReferences = (
+				C3ECF3C4243F6DFE00246449 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = C3ECF375243E8F5F00246449 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -573,6 +597,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C3ECF3C4243F6DFE00246449 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.13.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C3ECF3C5243F6DFF00246449 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3ECF3C4243F6DFE00246449 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C3ECF36C243E8F5F00246449 /* Project object */;
 }
